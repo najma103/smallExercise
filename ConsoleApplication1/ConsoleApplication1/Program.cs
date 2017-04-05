@@ -10,7 +10,7 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            int[] intArr1 = new int[] { 8, 6, 8, 2, 3, 5, 7, 9 };
+            int[] intArr1 = new int[] { 8, 6, 8, 1, 3, 5, 7, 9 };
             int[] intArr2 = new int[] { 3, 2, 9, 10, 5, 25, 50, 30, 1 };
 
             //sort the arrays
@@ -43,9 +43,6 @@ namespace ConsoleApplication1
          */
         static int[] FindMatchingIntegers(int[] array1, int[] array2)
         {
-            Array.Sort(array1);
-            Array.Sort(array2);
-
             int[] newArray = new int[10];
             int index = 0;
 
@@ -75,7 +72,7 @@ namespace ConsoleApplication1
             for (int i = 0; i < array2.Length; i++)
             {
                 int indexOf = BinarySearch(array1, array2[i]);
-                if(indexOf > 0)
+                if(indexOf >= 0)
                 {
                     newArray[index] = array2[i];
                     index++;
