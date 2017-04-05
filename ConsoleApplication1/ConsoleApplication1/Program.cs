@@ -10,8 +10,11 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            int[] intArr1 = new int[] { 50, 10, 8, 2, 3, 5, 7, 9 };
+            int[] intArr1 = new int[] { 8, 6, 8, 2, 3, 5, 7, 9 };
             int[] intArr2 = new int[] { 3, 2, 9, 10, 5, 25, 50, 30, 1 };
+
+            //sort the arrays
+            Array.Sort(intArr1); Array.Sort(intArr2);
 
             int[] matchedArray = new int[10];
             int[] newSets = new int[10];
@@ -38,7 +41,7 @@ namespace ConsoleApplication1
         /*
          * linear search array1 using array2 as key
          */
-        public static int[] FindMatchingIntegers(int[] array1, int[] array2)
+        static int[] FindMatchingIntegers(int[] array1, int[] array2)
         {
             Array.Sort(array1);
             Array.Sort(array2);
@@ -64,17 +67,14 @@ namespace ConsoleApplication1
         /*
          * binary search array1 using array2 as key
          */
-        public static int[] FindMatchingSets(int[] array1, int[] array2)
+        static int[] FindMatchingSets(int[] array1, int[] array2)
         {
-            Array.Sort(array1);
-            Array.Sort(array2);
-
             int[] newArray = new int[10];
             int index = 0;
 
             for (int i = 0; i < array2.Length; i++)
             {
-                int indexOf = Array.BinarySearch(array1, array2[i]);
+                int indexOf = BinarySearch(array1, array2[i]);
                 if(indexOf > 0)
                 {
                     newArray[index] = array2[i];
@@ -83,6 +83,28 @@ namespace ConsoleApplication1
             }
 
             return newArray;
+        }
+
+        static int BinarySearch(int[] integerArray, int key)
+        {
+            int start = 0, mid = 0, last = integerArray.Length - 1;
+            while(start <= last)
+            {
+                mid = (start + last) / 2;
+                if(key == integerArray[mid])
+                {
+                    return mid;
+                }
+                else if (key > integerArray[mid])
+                {
+                    start = mid + 1;
+                }
+                else
+                {
+                    last = mid - 1;
+                }
+            }
+            return -1;
         }
     }
 }
